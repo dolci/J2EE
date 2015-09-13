@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!-- <h:form id="frmListDocs"> -->
+        <!-- paginator="true" rows="5" -->
+       
+    <!-- </h:form> -->
+    <p:dataTable  id="inCellEditing" value="#{comptes.listCompte}" var="compte" editable="true" 
+     rowKey="#{compte.rib}"   >
+     
+    <f:facet name="header">  
+            Liste de Comptes Bancaires  
+        </f:facet> 
+        
+    <p:column headerText=" RIB" style="width:150px">
+        <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{compte.rib}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{compte.rib}" />  
+                </f:facet>  
+            </p:cellEditor> 
+       
+    </p:column>
+    <p:column headerText=" Date Creation" style="width:150px">
+         
+                <f:facet name="input">  
+                    <p:inputText value="#{compte.dateCreation}" />  
+                </f:facet>  
+           
+    </p:column>
+    
+    <p:column headerText=" SOLDE" style="width:150px">
+        <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{compte.solde}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{compte.solde}" />  
+                </f:facet>  
+            </p:cellEditor> 
+       
+    </p:column>
+    <p:column headerText="Options">   
+            <p:commandButton icon="ui-icon-trash" title="Delete" action="#{clients.delete(clt)}"  style="border-width:0;background:none;"/>          
+             <p:rowEditor />
+         
+        </p:column>  
+</p:dataTable>
+</ui:composition>

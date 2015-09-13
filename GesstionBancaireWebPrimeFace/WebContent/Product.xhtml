@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!-- <h:form id="frmPoSearch"> -->
+        <h3>Document B</h3>
+  <h:form id="product">
+        <p:panelGrid columns="2">
+            <f:facet name="header">  
+                Basic PanelGrid  
+           </f:facet>
+           
+             <h:outputText value="Product: " />  
+        <p:selectOneMenu value="#{products.listprod}">  
+            <f:selectItem itemLabel="Select One" itemValue="" />  
+            <f:selectItems value="#{products.listprod}"  
+                        var="prod" itemLabel="#{prod.product}"  
+                        itemValue="#{prod}"/>
+        </p:selectOneMenu>  
+
+            <h:outputLabel for="value" value="Quantity" />
+            <p:inputText id="value" value="#{prod.quantity}" />
+
+            <p:commandButton action="#{products.save}" update="mydata"
+                value="Save" icon="ui-icon-check" style="margin:0" />
+
+        </p:panelGrid>
+<!--  
+        <p:dataTable value="#{products.cacheList}" var="item" id="mydata">
+
+            <p:column headerText="Key">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.key}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <h:inputText value="#{item.qte}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+ 
+
+            <p:column headerText="Value">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.key}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <h:inputText value="#{item.qte}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+
+            <p:column headerText="Options" style="width:50px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+        -->
+    </h:form>
+       
+</ui:composition>

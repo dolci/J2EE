@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head><title>Gestion Compte Bancaire</title></h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="0"> <center><p> <b style="FONT-FAMILY: 'Elephant'; COLOR: #008000;">Gestion Compte Bancaire</b> </p></center></p:layoutUnit>
+            <p:layoutUnit position="west" size="200">
+<!--                 <h:form> -->
+<!--                     <h:panelGroup> -->
+<!--                        <p:commandButton id="btnPoSearch" value="Search Document A" -->
+<!--                  action="#{menuController.doViewDocumentA()}" update=":frmContent:pnlContent" /> -->
+<!--                  <p:commandButton id="btnList" value="Search DocumentB" update=":frmContent:pnlContent" -->
+<!--                      action="#{menuController.doViewDocumentB()}" /> -->
+<!--                     </h:panelGroup> -->
+<!--                 </h:form> -->
+
+<h:form>
+    <p:growl autoUpdate="true"/>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Client">
+            <p:menuitem value="Add" action="#{menuController.doViewAddClient()}"  update=":frmContent" icon="ui-icon-disk" />
+            <p:menuitem value="Liste" action="#{menuController.doViewListClient()}" update=":frmContent"  icon="ui-icon-arrowrefresh-1-w" />
+        </p:submenu>
+        <p:submenu label="Products">
+            <p:menuitem value="Add"   action="#{menuController.doViewProduct()}" update=":frmContent"  icon="ui-icon-disk"/>
+             <p:menuitem value="List" action="#{menuController.doViewDocumentA()}"  update=":frmContent" icon="ui-icon-add"/>
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Compte" >
+                    <p:menuitem value="list" action="#{menuController.doViewDocumentB()}" update=":frmContent"  icon="ui-icon-add" />
+                    <p:menuitem value="Operation"  action="#{menuController.doViewDocumentA()}" update=":frmContent" icon="ui-icon-document" />     
+        </p:submenu>
+    </p:panelMenu>
+</h:form>
+    </p:layoutUnit>
+            <p:layoutUnit  id ="frm" position="center">
+                <h:form id="frmContent">
+                  
+                           <ui:include src="#{menuController.page}.xhtml" />
+                 
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="60">footer</p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

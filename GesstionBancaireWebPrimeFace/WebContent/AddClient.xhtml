@@ -1,0 +1,56 @@
+
+       <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+ <script type="text/javascript">
+function add() {
+    var input = addCompte.innerHTML
+    addCompte.innerHTML = input + '<input class="form-control" placeholder="solde" type="number" name="solde" required="true" /><br />\n';
+    
+    
+}
+</script>
+ <f:view>
+    <h:form id="frmContent">
+    <p:panel id="panel" header="Add Client" style="margin-bottom:10px;">
+        <p:messages id="messages" />
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="cin" value="CIN:" />
+            <p:inputText id="cin" value="#{addClient.cin}" required="true" label="CIN">
+                <f:validateLength minimum="4" />
+            </p:inputText>
+            <p:message for="cin" />
+ 
+            <p:outputLabel for="nom" value="Nom client:" />
+            <p:inputText id="nom" value="#{addClient.nom}" required="true" label="NOM"/>
+            <p:message for="nom" />
+            
+            <p:outputLabel for="prenom" value="Prenom client:" />
+            <p:inputText id="prenom" value="#{addClient.prenom}" required="true" label="PRENOM"/>
+            <p:message for="prenom" />
+            
+            <p:outputLabel for="adresse" value="Adresse client:" />
+            <p:inputText id="adresse" value="#{addClient.adresse}" required="true" label="ADRESSE"/>
+            <p:message for="adresse" />
+            
+        </h:panelGrid>
+       <h:panelGrid>
+         <div class=" panel-default" >
+       
+       Compte    <a href="javascript:add();">add Compte</a> 
+     </div>
+        
+         <div id="addCompte">           
+          </div>
+       </h:panelGrid>
+       
+    </p:panel>
+    
+     <p:commandButton actionListener="#{addClient.save()}" update="panel"
+                value="Save" icon="ui-icon-check" style="margin:0" />
+            
+      </h:form>
+      </f:view>
+</ui:composition>

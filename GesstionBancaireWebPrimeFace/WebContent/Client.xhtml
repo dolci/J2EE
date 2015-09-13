@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+        
+       
+    <!-- </h:form> -->
+   
+  <h:form id="form1">
+  <p:growl id="msgs" showDetail="true"/>          
+    <p:dataTable value="#{clients.listClt}" var="clt" editable="true"
+     paginator="true" rowEditListener="#{clients.onEdit}" 
+     rows="5"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15">
+     
+     <p:ajax event="rowEdit" listener="#{clients.onEdit}" update=":frmContent:form1:msgs"/>
+     <p:ajax event="rowEditCancel" listener="#{clients.onCancel}" update=":frmContent:form1:msgs" />
+    <f:facet name="header">  
+           Liste de Clients 
+        </f:facet> 
+        <p:column headerText="Cin Client" style="width:150px">
+           <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{clt.cin}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{clt.cin}" />  
+                </f:facet>  
+            </p:cellEditor> 
+       <!-- <h:outputText value="#{clt.cin}"></h:outputText> --> 
+    </p:column>
+    <p:column headerText=" Name" >
+        <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{clt.nom}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{clt.nom}"/>  
+                </f:facet>  
+            </p:cellEditor> 
+       <!-- <h:outputText value="#{clt.nom}"></h:outputText> --> 
+    </p:column>
+    <p:column headerText=" Prenom" style="width:150px">
+        <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{clt.prenom}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{clt.prenom}"/>  
+                </f:facet>  
+            </p:cellEditor> 
+      <!-- <h:outputText value="#{clt.prenom}"></h:outputText>  -->  
+    </p:column>
+    
+    
+    <p:column headerText=" Adresse" style="width:150px">
+        <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{clt.adresse}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{clt.adresse}" />  
+                </f:facet>  
+            </p:cellEditor> 
+       <!-- <h:outputText value="#{clt.adresse}"></h:outputText> --> 
+    </p:column>
+    <p:column headerText="Options">   
+            <p:commandButton icon="ui-icon-trash" title="Delete" action="#{clients.delete(clt)}"  style="border-width:0;background:none;"/>          
+             <p:rowEditor />
+         
+        </p:column>  
+         <p:column headerText="Compte">   
+            <h:commandLink value="Compte"  actionListener="#{clients.transfert()}"  update=":frm">  
+            <f:param name="cin" value="#{clt.cin}" />        
+             </h:commandLink>>
+         
+        </p:column>  
+</p:dataTable>
+
+</h:form>
+</ui:composition>
